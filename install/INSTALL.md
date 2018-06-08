@@ -9,9 +9,7 @@ So for better compatibilty and support, we recommend you to use Ubuntu OS.
 * Get the T-RECS source by clonning the git repo
   (for this, you will need `git` installed.
   If not installed, install via `sudo apt install git`)  
-    - git clone https://c4science.ch/diffusion/5416/t-recs.git
-    OR
-    - git clone ssh://git@c4science.ch/diffusion/5416/t-recs.git
+    - git clone https://github.com/LCA2-EPFL/T-RECS.git 
 
 * Install Mininet from mininet.org/download
   (follow the installation instructions there or below)
