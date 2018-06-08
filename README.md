@@ -257,7 +257,7 @@ In case of our sample scenario, below figure presents how the network structure 
 
 {F4747161, layout=center, float, size=full, alt="Network structure for sample scenario"}
 
-![Network structure for sample scenario](/sample/network_fig/network_fig.png)
+![Network structure for sample scenario](sample/network_fig/network_fig.png)
 
 Sample run of T-RECS:
 
