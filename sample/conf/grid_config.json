@@ -1,0 +1,118 @@
+{
+	"comment1": "Line parameters are in SI units.",
+	"comment2": "The current grid model supports one slack bus (at index 0) and any arbitray number of PQ (load) buses.",
+	"grid": {
+		"lines": [
+			{
+				"from": 0,
+				"to": 1,
+				"R": 0.01904,
+				"X": 0.008356636456,
+				"B": 7.03717E-06
+			},
+			{
+				"from": 1,
+				"to": 2,
+				"R": 0.099,
+				"X": 0.004241150082,
+				"B": 1.41371669411541E-06
+			},
+			{
+				"from": 1,
+				"to": 3,
+				"R": 0.00952,
+				"X": 0.004178318228,
+				"B": 3.518585E-06
+			},
+			{
+				"from": 3,
+				"to": 4,
+				"R": 0.0234,
+				"X": 0.003769911183,
+				"B": 1.97920337176157E-06
+			},
+			{
+				"from": 3,
+				"to": 5,
+				"R": 0.12705,
+				"X": 0.0138544236075,
+				"B": 7.58694625841935E-06
+			},
+			{
+				"from": 5,
+				"to": 6,
+				"R": 0.0363,
+				"X": 0.003958406745,
+				"B": 2.16769893097696E-06
+			},
+			{
+				"from": 3,
+				"to": 7,
+				"R": 0.03878,
+				"X": 0.008576547945,
+				"B": 5.71769862953342E-06
+			},
+			{
+				"from": 7,
+				"to": 8,
+				"R": 0.00816,
+				"X": 0.003581415624,
+				"B": 3.01593E-06
+			},
+			{
+				"from": 7,
+				"to": 9,
+				"R": 0.12705,
+				"X": 0.0138544236075,
+				"B": 7.58694625841935E-06
+			},
+			{
+				"from": 9,
+				"to": 10,
+				"R": 0.099,
+				"X": 0.004241150082,
+				"B": 1.41371669411541E-06
+			},
+			{
+				"from": 9,
+				"to": 11,
+				"R": 0.04235,
+				"X": 0.0046181412025,
+				"B": 2.52898208613978E-06
+			},
+			{
+				"from": 11,
+				"to": 12,
+				"R": 0.0363,
+				"X": 0.003958406745,
+				"B": 2.16769893097696E-06
+			}
+		],
+		"base_quantities": {
+			"V": 4e2,
+			"S": 1e6
+		},
+		"slack_voltage":{
+			"comment1": "If use_trace is true the slack bus voltage is read from the trace (trace_file_path); otherwise, the static value of voltage_real and voltage_imaginary (specififed below) are used.",
+			"comment2": "The trace must contain three columns, timestamp in seconds, real part of voltage and imaginary part of voltage.",
+			"comment3": "The voltages are given in line to line",
+			"comment4": "Once the end of the trace is reached, the last value of the trace is used until the end of the experimentation.",
+			"use_trace": true,
+			"trace_file_path": "../sample/trace/slack_voltage.csv",
+			"voltage_real": 4e2,
+			"voltage_imaginary": 0
+		}
+	},
+	"resources": [
+		{
+			"resource_name": "battery1",
+			"resource_type": "battery",
+			"bus_index": 4
+		},
+		{
+			"resource_name": "ucpv1",
+			"resource_type": "ucpv",
+			"bus_index": 8
+		}
+	]
+}

@@ -1,0 +1,68 @@
+{
+    "comment1": "All paths in this configuration file should either be absolute paths or relative paths.",
+    "comment2": "Relative paths should be relative to the repository in which this config file resides.",
+    "comment3": "Virtualized hosts are run in the order they are specified in this configuration file.",
+    "comment4": "Virtualized hosts have IP address of the form 10.x.y.1.",
+    "comment5": "First host: x = 0, y = 0; Second host: x = 0, y = 1; 255th host: x = 0, y = 254; 256th host: x = 1, y = 0; and so on.",
+    "comment6": "A host of type 'RA' is responsible for or attached to a resource. Please put the 'resource_name' here from 'grid_config.json' file.",
+    "hosts": [
+        {
+            "host_name": "batt1_ra",
+            "host_type": "RA",
+            "attached_resource_name": "battery1",
+            "executables": [
+                {
+                    "executable_path": "../../sample/agent/batt1_ra/battery-agent-v1.0",
+                    "command_line_arguments": [],
+                    "required_files_paths": []
+                },
+                {
+                    "executable_path": "../../sample/agent/batt1_ra/commelecd",
+                    "command_line_arguments": [
+                        "config-files/daemon-config.json"
+                    ],
+                    "required_files_paths": [
+                        "../../sample/agent/batt1_ra/config-files/daemon-config.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "host_name": "ucpv1_ra",
+            "host_type": "RA",
+            "attached_resource_name": "ucpv1",
+            "executables": [
+                {
+                    "executable_path": "../../sample/agent/ucpv1_ra/ucpv-agent-v1.0",
+                    "command_line_arguments": [],
+                    "required_files_paths": []
+                },
+                {
+                    "executable_path": "../../sample/agent/ucpv1_ra/commelecd",
+                    "command_line_arguments": [
+                        "daemon-cfg.json"
+                    ],
+                    "required_files_paths": [
+                        "../../sample/agent/ucpv1_ra/daemon-cfg.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "host_name": "ugrid_ga",
+            "host_type": "GA",
+            "executables": [
+                {
+                    "executable_path": "../../sample/agent/ugrid_ga/ugrid_ga",
+                    "command_line_arguments": [
+                        "gaconfig.json"
+                    ],
+                    "required_files_paths": [
+                        "../../sample/agent/ugrid_ga/gaconfig.json",
+                        "../../sample/agent/ugrid_ga/requestVPP.dat"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+  "daemon-path":           "./commelecd",
+  "daemon-config-path":    "./config-files/daemon-config.json",
+  "ra-res-config-path":    "./config-files/ra-res-config.json",
+  "model-parameters-path": "./config-files/battery-model-parameters.json"
+}

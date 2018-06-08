@@ -1,0 +1,129 @@
+{
+  "gridAgent":{"followerListenPort":12345,
+               "simulateSE":false,
+               "SEpacketSelectionCount":3,
+               "modeOfOperation":"trackingMode",
+               "defaultTrackingPValueInWatts":10,
+               "defaultQTrackingMode":10,
+               "requestVPPfile":"requestVPP.dat",
+               "maxTrackingSlope":100,
+               "maxLatencySamples":10,
+               "trackingAlpha":1.0,
+               "doThevenin":false,
+               "requestObjectiveWeightP":10.0,
+               "requestObjectiveWeightQ":10.0,
+               "voltageObjectiveWeight":1.0,
+               "currentObjectiveWeight":1.0,
+               "gradientDescentStepsizeMin":0.01,
+               "gradientDescentStepsizeMax":0.01,
+               "requestWeightPPrimaryControl":10.0,
+               "requestWeightQPrimaryControl":10.0,
+               "primaryControlFreqDroopSlope":2e5},
+  "stateEstimatorInterface":{"listenPort":12346},
+  "followers":[
+    {"agentId":1000,"name":"battery","busId":4,"IPAddress":"10.0.0.1","port":12340,"weight":1},
+    {"agentId":2000,"name":"pv","busId":8,"IPAddress":"10.0.1.1","port":12341,"weight":1.0}
+  ],
+  "grid":{
+"lines": [
+			{
+				"from": 0,
+				"to": 1,
+				"R": 0.119,
+				"X": 0.0522290,
+				"B": 1.12595e-6,
+				"ampacity":207.0002787639
+			},
+			{
+				"from": 1,
+				"to": 2,
+				"R": 0.61875,
+				"X": 0.0265072,
+				"B": 2.26194e-7,
+ 				"ampacity":43.9998640149
+			},
+			{
+				"from": 1,
+				"to": 3,
+				"R": 0.0595,
+				"X": 0.0261145,
+				"B": 5.62973e-5,
+				"ampacity":207.0002787639
+			},
+			{
+				"from": 3,
+				"to": 4,
+				"R": 0.14625,
+				"X": 0.0235619,
+				"B": 3.16673e-7,
+  				"ampacity":107.9991413546
+			},
+			{
+				"from": 3,
+				"to": 5,
+				"R": 0.7940625,
+				"X": 0.0865901,
+				"B": 1.21391e-6,
+	  			"ampacity":81.9996153573
+			},
+			{
+				"from": 5,
+				"to": 6,
+				"R": 0.226875,
+				"X": 0.0247400,
+				"B": 3.46832e-7,
+				"ampacity":81.9996153573
+			},
+			{
+				"from": 3,
+				"to": 7,
+				"R": 0.242375,
+				"X": 0.0536034,
+				"B": 9.14832e-7,
+				"ampacity":135.0003700689
+			},
+			{
+				"from": 7,
+				"to": 8,
+				"R": 0.051,
+				"X": 0.0223838,
+				"B": 4.82549e-7,
+				"ampacity":207.0002787639
+			},
+			{
+				"from": 7,
+				"to": 9,
+				"R": 0.7940625,
+				"X": 0.0865901,
+				"B": 1.21391e-6,
+				"ampacity":81.9996153573
+			},
+			{
+				"from": 9,
+				"to": 10,
+				"R": 0.61875,
+				"X": 0.0265071,
+				"B": 2.26195e-7,
+				"ampacity":43.9998640149
+			},
+			{
+				"from": 9,
+				"to": 11,
+				"R": 0.2646875,
+				"X": 0.0288634,
+				"B": 4.04637e-7,
+				"ampacity":81.9996153573
+			},
+			{
+				"from": 11,
+				"to": 12,
+				"R": 0.226875,
+				"X": 0.0247400,
+				"B": 3.46832e-7,
+				"ampacity":81.9996153573
+			}
+		],
+    "baseQuantities": {"V":4e2,"S":1e6}
+  },
+  "scada":{"IPAddress":"127.0.0.1","port_tracking":14445, "port_primary":14446}
+}

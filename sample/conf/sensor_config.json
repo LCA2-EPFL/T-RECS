@@ -1,0 +1,19 @@
+{
+    "comment1": "'data_sending_freq' is in milli seconds.",
+    "sensed_bus_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "sensed_info_sending_freq": 20,
+    "receivers_of_sensed_info": [
+        {
+	        "host_name": "ugrid_ga",
+	        "listen_port": 12346
+        }
+    ],
+    "line_frequency":{
+      "comment1":"If use_trace is true the line frequency is read from the trace (trace_file_path); otherwise, the static value of line_frequency (specififed below) is used.",
+      "comment2":"The trace must contain two columns, timestamp in seconds and line frequency in [1/s].",
+      "comment3":"Once the end of the trace is reached, the last value of the trace is used until the end of the experimentation.",
+      "use_trace": true,
+      "trace_file_path": "../sample/trace/line_frequency.csv",
+      "line_frequency": 50
+    }
+}

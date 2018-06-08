@@ -1,0 +1,6 @@
+{
+    "comment1": "TODO: The desired network configuration between virtual hosts has to be specified in this file.",
+    "comment2": "Currently, the below loss (in percentage) is applied to all the links. TODO: loss value per link.",
+    "comment3": "The current network configuration consists of a single central router connecting all the virtual hosts running different agents.",
+    "loss": 0
+}

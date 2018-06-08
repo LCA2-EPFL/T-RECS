@@ -1,0 +1,6 @@
+{
+  "resource-type":"battery",
+  "res-ip":"127.0.0.1",
+  "listen-port":43434,
+  "write-port":34343
+}

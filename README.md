@@ -247,19 +247,18 @@ For listening the messages from their models,
 * UCPV RA will listen on (`127.0.0.1`, 43434)
 
 Real communication looks like the following:
-* battery RA -----> GA: battery RA will send to (`10.0.2.1`, PORT_WHERE_GA_IS_LISTENING_FOR_MESSAGES_FROM_RAS)
-* UCPV RA -----> GA: UCPV RA will send to (`10.0.2.1`, PORT_WHERE_GA_IS_LISTENING_FOR_MESSAGES_FROM_RAS)
-* GA -----> battery RA: GA will send to (`10.0.0.1`, PORT_WHERE_BATTERY_RA_IS_LISTENING_FOR_MESSAGES_FROM_GA)
-* GA -----> UCPV RA:    GA will send to (`10.0.1.1`, PORT_WHERE_UCPV_RA_IS_LISTENING_FOR_MESSAGES_FROM_GA)
-* GridSensor  -----> GA: GridSensor will send to (`10.0.2.1`, PORT_WHERE_GA_IS_LISTENING_FOR_MESSAGES_FROM_SENSORS)
+* battery RA -----> GA: battery RA will send to (`10.0.2.1`, PORT\_WHERE\_GA\_IS\_LISTENING\_FOR\_MESSAGES\_FROM\_RAS)
+* UCPV RA -----> GA: UCPV RA will send to (`10.0.2.1`, PORT\_WHERE\_GA\_IS\_LISTENING\_FOR\_MESSAGES\_FROM\_RAS)
+* GA -----> battery RA: GA will send to (`10.0.0.1`, PORT\_WHERE\_BATTERY\_RA\_IS\_LISTENING\_FOR\_MESSAGES\_FROM\_GA)
+* GA -----> UCPV RA:    GA will send to (`10.0.1.1`, PORT\_WHERE\_UCPV\_RA\_IS\_LISTENING\_FOR\_MESSAGES\_FROM\_GA)
+* GridSensor  -----> GA: GridSensor will send to (`10.0.2.1`, PORT\_WHERE\_GA\_IS\_LISTENING\_FOR\_MESSAGES\_FROM\_SENSORS)
 
 In case of our sample scenario, below figure presents how the network structure looks like:
 
-{F4747161, layout=center, float, size=full, alt="Network structure for sample scenario"}
 
 ![Network structure for sample scenario](sample/network_fig/network_fig.png)
 
-Sample run of T-RECS:
+Sample run of T-RECS (before running the below command, get the same executables from [the repo, link coming soon.]):
 
 ```
 lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sample/conf/grid_config.json ./sample/conf/resource_config.json ./sample/conf/sensor_config.json ./sample/conf/network_config.json --output_path=output
@@ -346,9 +345,8 @@ lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sam
 * `src/router` contains the scapy script to capture the traffic at the router.
 * `src/util` contains `snippets.py`, a file with utility functions.
 * `src/plot` contains `plot.py`, a script to plot various output data.
-* `sample/agent` contains sample agent files.  `ugrid_ga` contains the commelec
-  grid agent, `batt1_ra` contains the battery RA, and `ucpv1_ra` contains
-  the PV RA.
+* `sample/agent` should contain executables of your agents.  In the running scenario, `ugrid_ga` is the COMMELEC
+  grid agent, `batt1_ra` is the COMMELEC battery RA, and `ucpv1_ra` is the PV RA. They are not provided with MIT license as part of the T-RECS source code. GridSteer https://www.gridsteer.ch provides these sample executables in another repo [link coming]. 
 * `sample/conf` contains the sample configuration files for a scenario having
   one GA and two resource agents, namely Battery and Uncontrollable PV agents.
 * `sample/trace` contains trace files. Currently, it contains the weather

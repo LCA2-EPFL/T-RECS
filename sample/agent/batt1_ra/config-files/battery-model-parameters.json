@@ -1,0 +1,30 @@
+{
+			"comment1": "ratedE is in kWh, ratedS is in kVA, and refresh_period_for_battery_state and converterSlewRate are in milli seconds. initialP and initialQ are the AC power injected/absorbed from the grid. The sign convention for initialP and initialQ is the following: Negative values means power withdrawn from the grid and therefore, the battery is charging. Vice versa for the other case.",
+			"resource_name": "battery1",
+			"refresh_period_for_battery_state": 10,
+			"initialSoC": 0.5,
+			"initialP": 0,
+			"initialQ": 0,
+			"converter_efficiency": 0.9,
+			"converter_Vmin": 400,
+			"converter_Vmax": 700,
+			"converter_PowerSlewRate": 20000,
+			"ratedE": 20,
+	  		"ratedS": 20,
+	  		"cell": {
+				"comment1": "'cell' field contains information per cell of the battery.",
+				"comment2": "LUT (look up table) contains different measured quantities per cell at different SoC values.",
+				"comment3": "Measured LUT values for one cell are used for all the simulated cells in the battery model.",
+				"maxCurrent": 60,
+				"ratedE": 0.0367,
+				"LUT": {
+		  			"SoC": [0,     0.1,      0.2,      0.3,      0.4,      0.5,      0.6,      0.7,     0.8,      0.9,      1],
+		  			"C1": [10000,   10917,    17301,    10315,    10007,    11944,    11488,    98387,   10266,    12904,    21289],
+		  			"R1": [0.005,   0.0069,   0.0019,   0.0017,   0.0014,   0.0014,   0.0014,   0.0014,  0.0012,   0.0011,   0.0019],
+		  			"C2": [10000,   10913,    17300,    10315,    10007,    11942,    11492,    98346,   10266,    12877,    21278],
+		  			"R2": [0.005,   0.0016,   0.0019,   0.0017,   0.0014,   0.0014,   0.0014,   0.0014,  0.0013,   0.001,    0.0019],
+		  			"R0": [0.01,    0.0127,   0.0027,   0.0017,   0.0018,   0.0016,   0.0016,   0.0019,  0.0022,   0.0016,   0.0022],
+		  			"Em": [2.2,     2.146,    2.0371,   2.0942,   2.1413,   2.1877,   2.2444,   2.3240,  2.3949,   2.4420,   2.5534]
+				}
+	  		}
+		}

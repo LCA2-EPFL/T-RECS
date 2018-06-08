@@ -1,0 +1,59 @@
+{
+	"comment1": "All paths in this configuration file should either be absolute paths or relative paths.",
+	"comment2": "Relative paths should be relative to the repository in which this config file resides.",
+	"comment3": "'_path' in the end of a key triggers the conversion of relative path to absolute path.",
+    "resources": [
+		{
+			"comment1": "ratedE is in kWh, ratedS is in kVA, and refresh_period_for_battery_state and converterSlewRate are in milli seconds. initialP and initialQ are the AC power injected/absorbed from the grid. The sign convention for initialP and initialQ is the following: Negative values means power withdrawn from the grid and therefore, the battery is charging. Vice versa for the other case.",
+			"resource_name": "battery1",
+			"refresh_period_for_battery_state": 10,
+			"initialSoC": 0.6,
+			"initialP": 0,
+			"initialQ": 0,
+			"inverter_efficiency": 0.9,
+			"inverter_Vmin": 400,
+			"inverter_Vmax": 700,
+			"inverterPowerSlewRate": 20000,
+			"ratedE": 20,
+	  		"ratedS": 20,
+	  		"cell": {
+				"comment1": "'cell' field contains information per cell of the battery.",
+				"comment2": "LUT (look up table) contains different measured quantities per cell at different SoC values.",
+				"comment3": "Measured LUT values for one cell are used for all the simulated cells in the battery model.",
+				"maxCurrent": 60,
+				"ratedE": 0.0367,
+				"LUT": {
+		  			"SoC": [0,     0.1,      0.2,      0.3,      0.4,      0.5,      0.6,      0.7,     0.8,      0.9,      1],
+		  			"C1": [10000,   10917,    17301,    10315,    10007,    11944,    11488,    98387,   10266,    12904,    21289],
+		  			"R1": [0.005,   0.0069,   0.0019,   0.0017,   0.0014,   0.0014,   0.0014,   0.0014,  0.0012,   0.0011,   0.0019],
+		  			"C2": [10000,   10913,    17300,    10315,    10007,    11942,    11492,    98346,   10266,    12877,    21278],
+		  			"R2": [0.005,   0.0016,   0.0019,   0.0017,   0.0014,   0.0014,   0.0014,   0.0014,  0.0013,   0.001,    0.0019],
+		  			"R0": [0.01,    0.0127,   0.0027,   0.0017,   0.0018,   0.0016,   0.0016,   0.0019,  0.0022,   0.0016,   0.0022],
+		  			"Em": [2.2,     2.146,    2.0371,   2.0942,   2.1413,   2.1877,   2.2444,   2.3240,  2.3949,   2.4420,   2.5534]
+				}
+	  		}
+		},
+		{
+			"comment1": "'update_period' is in milli seconds.",
+			"comment2": "The converter efficiency must be given between 0 and 1.",
+			"comment3": "The trace must contain two columns: timestamp in seconds and irradiance W/m2.",
+			"comment4": "'rated_power_dc_side' is the power in W produced by the PV when the irradiance is 'S_STC' W/m2 (STC for standard test condition).",
+			"comment5": "Once the end of the trace file is reached, the trace restart with the first value of the file.",
+			"resource_name": "ucpv1",
+			"irradiance_trace_file_path": "../trace/irradiance_ucpv1.csv",
+			"update_period": 75,
+			"S_STC": 1000,
+			"rated_power_dc_side": 10000,
+			"converter_efficiency": 0.95
+		},
+		{
+			"comment1": "'update_period' and 'sample_period' are in milli seconds.",
+			"comment2": "Trace file contains apparent power in kVA. Power factor is 0.9 for CLP trace and 0.95 for Onnens trace.",
+			"resource_name": "ucload1",
+			"trace_file_path": "",
+			"update_period": 75,
+			"sample_period": 100,
+			"power_factor": 0.9
+		}
+    ]
+}

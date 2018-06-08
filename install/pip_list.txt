@@ -1,0 +1,8 @@
+pypower
+numpy >= 1.9.0
+netifaces
+pycapnp
+pandas
+voluptuous
+scapy-python3
+matplotlib
