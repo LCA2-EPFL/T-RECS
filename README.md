@@ -346,7 +346,7 @@ lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sam
 * `src/util` contains `snippets.py`, a file with utility functions.
 * `src/plot` contains `plot.py`, a script to plot various output data.
 * `sample/agent` should contain executables of your agents.  In the running scenario, `ugrid_ga` is the COMMELEC
-  grid agent, `batt1_ra` is the COMMELEC battery RA, and `ucpv1_ra` is the PV RA. They are not provided with MIT license as part of the T-RECS source code. GridSteer https://www.gridsteer.ch provides these sample executables in another repo [link coming]. 
+  grid agent, `batt1_ra` is the COMMELEC battery RA, and `ucpv1_ra` is the PV RA. They are not provided with MIT license as part of the T-RECS source code. [GridSteer](https://www.gridsteer.ch) provides sample executables at this [repo](link coming). 
 * `sample/conf` contains the sample configuration files for a scenario having
   one GA and two resource agents, namely Battery and Uncontrollable PV agents.
 * `sample/trace` contains trace files. Currently, it contains the weather
