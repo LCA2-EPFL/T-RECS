@@ -258,7 +258,7 @@ In case of our sample scenario, below figure presents how the network structure 
 
 ![Network structure for sample scenario](sample/network_fig/network_fig.png)
 
-Sample run of T-RECS (before running the below command, get the same executables from [the repo, link coming soon.]):
+Sample run of T-RECS (before running the below command, get the sample executables from [repo](https://github.com)):
 
 ```
 lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sample/conf/grid_config.json ./sample/conf/resource_config.json ./sample/conf/sensor_config.json ./sample/conf/network_config.json --output_path=output
