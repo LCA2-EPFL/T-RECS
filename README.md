@@ -258,7 +258,7 @@ In case of our sample scenario, below figure presents how the network structure 
 
 ![Network structure for sample scenario](sample/network_fig/network_fig.png)
 
-Sample run of T-RECS (before running the below command, get the sample executables provided by [GridSteer](https://www.gridsteer.ch) at this [repo](https://github.com)):
+Sample run of T-RECS (before running the below command, get the sample executables provided by [GridSteer](https://www.gridsteer.ch) at this [repo](https://github.com/GridSteer/t-recs-sample-executables)):
 
 ```
 lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sample/conf/grid_config.json ./sample/conf/resource_config.json ./sample/conf/sensor_config.json ./sample/conf/network_config.json --output_path=output
@@ -346,7 +346,7 @@ lca2@SG01:~/trecs$ sudo ./src/runtestbed.py ./sample/conf/host_config.json ./sam
 * `src/util` contains `snippets.py`, a file with utility functions.
 * `src/plot` contains `plot.py`, a script to plot various output data.
 * `sample/agent` should contain executables of your agents.  In the running scenario, `ugrid_ga` is the COMMELEC
-  grid agent, `batt1_ra` is the COMMELEC battery RA, and `ucpv1_ra` is the PV RA. They are not provided with MIT license as part of the T-RECS source code. [GridSteer](https://www.gridsteer.ch) provides sample executables at this [repo](https://github.com). 
+  grid agent, `batt1_ra` is the COMMELEC battery RA, and `ucpv1_ra` is the PV RA. They are not provided with MIT license as part of the T-RECS source code. [GridSteer](https://www.gridsteer.ch) provides sample executables at this [repo](https://github.com/GridSteer/t-recs-sample-executables). 
 * `sample/conf` contains the sample configuration files for a scenario having
   one GA and two resource agents, namely Battery and Uncontrollable PV agents.
 * `sample/trace` contains trace files. Currently, it contains the weather
