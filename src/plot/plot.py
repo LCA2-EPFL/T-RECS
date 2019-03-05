@@ -74,6 +74,20 @@ def GA_parse(log_file):
                     value = float(match.group(1))
                     data[follower].append(value)
                     break
+                elif re.search('as measured by RA', line):
+                    match = patterns['follower'].search(line)
+                    if not match:
+                        continue
+                    value = float(match.group(1))
+                    data[follower].append(value)
+                    break
+
+    data_lens = [len(data[follower]) for follower in data.keys()]
+    min_len = min(data_lens)
+    for follower in data.keys() :
+        if len(data[follower]) > min_len :
+            print ("GA_parse() : reducing size of column", follower, "("+str(len(data[follower]))+") to match minimum column length ("+str(min_len)+")")
+            data[follower] = data[follower][:min_len]
 
     return pd.DataFrame.from_dict(data)
 
@@ -174,7 +188,6 @@ def main():
             plt.plot(group['LineCurrent'], label='Line #{:d}'.format(index))
         plt.title("Line current (I)")
         plt.legend(loc='best')
-
     except Exception as e:
         print("Could not plot grid data: {}".format(e))
 
