@@ -43,7 +43,42 @@ logger = getLogger('resource.load')
 BUFFER_LIMIT = 1024
 
 
-def send(addr, state, period):
+def reply(addr, state, bus_index, msg_format):
+    """Reply to the resource agent with the Load's state.
+
+    Parameters
+    ----------
+        addr : tuple
+            Address of the RA.
+
+        state : dict
+            State of the Load.
+
+    """
+    if msg_format == "cpp" :
+        measurement_array= [{'P':0, 'Q':0} for i in range(bus_index+1)]
+        measurement_array[bus_index] = {
+                    'P': -state['P'],  # Sign convention in COMMELEC agents is opposite.
+                    'Q': -state['Q']  # Sign convention in COMMELEC agents is opposite.
+                }
+        message = {
+            "buses": measurement_array
+        }
+        logger.info("Sending setpoint (P = {}, Q = {}) to RA (CPP executable format)"
+                    .format(message["buses"][bus_index]['P'], message["buses"][bus_index]['Q']))
+    else :
+        message = {
+            'P': -state['P'],  # Sign convention in COMMELEC agents is opposite.
+            'Q': -state['Q']  # Sign convention in COMMELEC agents is opposite.
+        }
+        logger.info("Sending setpoint (P = {}, Q = {}) to RA (Labview executable format)"
+                    .format(message['P'], message['Q']))
+    data = dump_json_data(message)
+    sock = socket(AF_INET, SOCK_DGRAM)
+    sock.sendto(data, addr)
+
+
+def send(addr, state, period, bus_index, message_format="labview"):
     """Periodically send the state to the resource agent.
 
     Parameters
@@ -60,33 +95,10 @@ def send(addr, state, period):
     """
     while True:
         start_time = default_timer()
-        reply(addr, state)
+        reply(addr, state, bus_index, message_format)
         elapsed_time = default_timer() - start_time
         if elapsed_time < period:
             sleep(period - elapsed_time)
-
-
-def reply(addr, state):
-    """Reply to the resource agent with the Load's state.
-
-    Parameters
-    ----------
-        addr : tuple
-            Address of the RA.
-
-        state : dict
-            State of the Load.
-
-    """
-    message = {
-        'P': -state['P'],  # Sign convention in COMMELEC agents is opposite.
-        'Q': -state['Q']  # Sign convention in COMMELEC agents is opposite.
-    }
-    logger.info("Sending setpoint (P = {}, Q = {}) to RA"
-                .format(message['P'], message['Q']))
-    data = dump_json_data(message)
-    sock = socket(AF_INET, SOCK_DGRAM)
-    sock.sendto(data, addr)
 
 
 def generate_log(queue, log_path):
@@ -133,18 +145,33 @@ def main():
         params = load_json_file(args.params_path, logger)
 
     # Load the GridAPI.
-    api = load_api(args.api_path)
+    # TODO : uncomment
+    #api = load_api(args.api_path)
 
     # Extract some relevant things out of the configuration.
     bus_index = config['bus_index']
     load_path = config['trace_file_abs_path']
 
-    Load_addr = api.grid_ip, config['port']
-    RA_addr = config['RA']['ip'], config['RA']['port']
+    # "labview" : message format for 'old' labview resource-agent executabée
+    # "cpp"     : message format for 'new' cpp executable
+    # Try/Except for backwards compatibility : if not specified, fallback to old message format
+    try :
+        message_format = config["message_format"]
+    except KeyError :
+        message_format = "labview"
+
+        # MODIFIED :
+    #Load_addr = api.grid_ip, config['listen_port']
+    # RA_addr = config['RA']['ip'], config['RA']['port']
+    Load_addr = "127.0.0.1", config['listen_port']
+    RA_addr = config['RA']['ip'], config['RA']['listen_port']
 
     # Read in the Load parameters.
     sample_period = params['sample_period'] / 1e3
     update_period = params['update_period'] / 1e3
+
+    # MODIFIED :
+    POWER_FACTOR= params['power_factor']
 
     queue = Queue()
     state = {
@@ -154,7 +181,7 @@ def main():
     queue.put(state)
 
     # Communicate with the RA.
-    Thread(target=send, args=(RA_addr, state, update_period)).start()
+    Thread(target=send, args=(RA_addr, state, update_period, bus_index, message_format)).start()
 
     # Run the log generation.
     log_path = config['log_path']
